@@ -105,8 +105,10 @@ function updateCountdown() {
             countdownLabels.classList.add('is-hidden');
             countdownComplete.classList.remove('is-hidden');
             countdownMessage.textContent = 'O grande dia chegou. Estamos prontos para celebrar!';
-            window.clearInterval(intervalId);
-            return;
+            if (intervalId) {
+                window.clearInterval(intervalId);
+            }
+            return true;
         }
 
         const totalSeconds = Math.floor(difference / 1000);
@@ -123,10 +125,14 @@ function updateCountdown() {
         countdownMinutes.textContent = formatCountdownPart(minutes);
         countdownSeconds.textContent = formatCountdownPart(seconds);
         countdownMessage.textContent = 'Até celebrarmos juntos este dia inesquecível.';
+        return false;
     };
 
-    intervalId = window.setInterval(update, 1000);
-    update();
+    const hasCompleted = update();
+
+    if (!hasCompleted) {
+        intervalId = window.setInterval(update, 1000);
+    }
 }
 
 function toUtcIcsDate(dateString) {
