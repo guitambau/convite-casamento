@@ -72,11 +72,25 @@ function formatCountdownPart(value, minimumDigits = 2) {
 function updateCountdown() {
     const targetDate = new Date(weddingConfig.date);
     const countdownDisplay = document.getElementById('countdown-display');
+    const countdownDays = document.getElementById('countdown-days');
+    const countdownHours = document.getElementById('countdown-hours');
+    const countdownMinutes = document.getElementById('countdown-minutes');
+    const countdownSeconds = document.getElementById('countdown-seconds');
     const countdownMessage = document.getElementById('countdown-message');
 
-    if (!countdownDisplay || !countdownMessage || Number.isNaN(targetDate.getTime())) {
+    if (
+        !countdownDisplay ||
+        !countdownDays ||
+        !countdownHours ||
+        !countdownMinutes ||
+        !countdownSeconds ||
+        !countdownMessage ||
+        Number.isNaN(targetDate.getTime())
+    ) {
         return;
     }
+
+    let intervalId;
 
     const update = () => {
         const now = new Date();
@@ -84,7 +98,9 @@ function updateCountdown() {
 
         if (difference <= 0) {
             countdownDisplay.textContent = 'É hoje';
+            countdownDisplay.classList.add('countdown__numbers--complete');
             countdownMessage.textContent = 'O grande dia chegou. Estamos prontos para celebrar!';
+            window.clearInterval(intervalId);
             return;
         }
 
@@ -94,17 +110,16 @@ function updateCountdown() {
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
 
-        countdownDisplay.textContent = [
-            formatCountdownPart(days, 2),
-            formatCountdownPart(hours),
-            formatCountdownPart(minutes),
-            formatCountdownPart(seconds)
-        ].join(' : ');
+        countdownDisplay.classList.remove('countdown__numbers--complete');
+        countdownDays.textContent = formatCountdownPart(days, 2);
+        countdownHours.textContent = formatCountdownPart(hours);
+        countdownMinutes.textContent = formatCountdownPart(minutes);
+        countdownSeconds.textContent = formatCountdownPart(seconds);
         countdownMessage.textContent = 'Até celebrarmos juntos este dia inesquecível.';
     };
 
+    intervalId = window.setInterval(update, 1000);
     update();
-    window.setInterval(update, 1000);
 }
 
 function toUtcIcsDate(dateString) {

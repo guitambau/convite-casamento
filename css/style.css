@@ -270,10 +270,34 @@ a {
 }
 
 .countdown__numbers {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.countdown__value {
+    position: relative;
+    font-family: var(--font-heading);
+    font-size: clamp(2.35rem, 10vw, 5rem);
+    line-height: 1;
+    color: var(--color-primary);
+}
+
+.countdown__value:not(:last-child)::after {
+    content: ':';
+    position: absolute;
+    top: 50%;
+    right: -0.35rem;
+    transform: translateY(-50%);
+    color: var(--color-accent);
+}
+
+.countdown__numbers--complete {
+    display: block;
     font-family: var(--font-heading);
     font-size: clamp(2.5rem, 10vw, 5rem);
     line-height: 1;
-    letter-spacing: 0.06em;
     color: var(--color-primary);
 }
 
