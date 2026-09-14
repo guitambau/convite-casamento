@@ -5,7 +5,7 @@ const dinnerConfig = {
     endDate: '2026-10-24T20:00:00-03:00',
     venue: 'Rua Rui Sérgio Rogrigues de Moura, 942',
     address: 'Condominio Portal da Serra - Urbanova - SJC',
-    heroBackgroundUrl: '',
+    heroBackgroundUrl: 'assets/images/back.jpeg',
     mapsUrl: 'https://maps.app.goo.gl/z8nCoDZRz23R7yE66',
     rsvpUrl: '',
     calendar: {
