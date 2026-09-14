@@ -239,46 +239,6 @@ function setupRevealAnimations() {
     elements.forEach((element) => observer.observe(element));
 }
 
-function setupInvitationReveal() {
-    const trigger = document.getElementById('open-invitation');
-    const content = document.getElementById('invitation-content');
-    const footer = document.getElementById('invitation-footer');
-    const revealSection = document.getElementById('convite');
-    const revealTitle = document.getElementById('invite-title');
-
-    if (!trigger || !content || !footer || !revealSection || !revealTitle) return;
-
-    trigger.addEventListener('click', () => {
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const transitionDelay = reducedMotion ? 0 : 420;
-
-        trigger.disabled = true;
-        document.body.classList.add('is-opening');
-
-        window.setTimeout(() => {
-            content.hidden = false;
-            footer.hidden = false;
-            content.classList.add('invitation-content--revealed');
-            trigger.setAttribute('aria-expanded', 'true');
-
-            window.requestAnimationFrame(() => {
-                revealTitle.focus({ preventScroll: true });
-                revealSection.scrollIntoView({
-                    behavior: reducedMotion ? 'auto' : 'smooth',
-                    block: 'start'
-                });
-            });
-
-            window.setTimeout(() => {
-                document.body.classList.remove('is-opening');
-                document.body.classList.add('is-open');
-                trigger.textContent = 'Convite aberto';
-                trigger.classList.add('hero__scroll--opened');
-            }, reducedMotion ? 0 : 900);
-        }, transitionDelay);
-    }, { once: true });
-}
-
 function initializePage() {
     setOpenGraphUrl();
     setEventContent();
@@ -287,7 +247,6 @@ function initializePage() {
     updateCountdown();
     setupCalendarLink();
     setupRevealAnimations();
-    setupInvitationReveal();
 }
 
 initializePage();
