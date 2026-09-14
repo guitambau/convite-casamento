@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jantar dos Padrinhos | Isabelle &amp; Guilherme</title>
-    <meta name="description" content="Um convite especial de Isabelle e Guilherme para seus padrinhos.">
+    <title>Um convite especial | Isabelle &amp; Guilherme</title>
+    <meta name="description" content="Isabelle e Guilherme prepararam um convite especial para você.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Jantar dos Padrinhos | Isabelle &amp; Guilherme">
+    <meta property="og:title" content="Um convite especial | Isabelle &amp; Guilherme">
     <meta property="og:description"
-        content="Queremos brindar, agradecer e celebrar com quem estará ao nosso lado no grande dia.">
+        content="Preparamos uma surpresa com muito carinho e queremos dividi-la com você.">
     <meta property="og:image" content="assets/images/og-image.jpg">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:url" content="">
@@ -29,16 +29,17 @@
         <div class="hero__ornament hero__ornament--right" aria-hidden="true"></div>
         <div class="container hero__content reveal">
             <p class="hero__monogram" aria-label="Isabelle e Guilherme">I <span>&amp;</span> G</p>
-            <p class="hero__kicker">Um convite especial para</p>
-            <h1 class="hero__title">Nossos<br><em>padrinhos</em></h1>
+            <p class="hero__kicker">Isabelle &amp; Guilherme</p>
+            <h1 class="hero__title">Uma noite<br><em>especial</em></h1>
             <div class="hero__divider" aria-hidden="true"><span></span></div>
-            <p class="hero__subtitle">Uma noite para brindar, agradecer e celebrar quem caminha ao nosso lado.</p>
+            <p class="hero__subtitle">Preparamos uma surpresa com muito carinho e queremos dividir este momento com vocês.</p>
             <p class="hero__date" id="event-date-display">Data a confirmar</p>
-            <a class="hero__scroll" href="#convite" aria-label="Conheça os detalhes do jantar">Ver convite</a>
+            <button class="hero__scroll" id="open-invitation" type="button" aria-controls="invitation-content"
+                aria-expanded="false">Ver convite</button>
         </div>
     </header>
 
-    <main>
+    <main id="invitation-content" hidden>
         <nav class="section section--quick-links" aria-label="Acessos rápidos">
             <div class="container quick-links reveal">
                 <a class="chip-link" href="#detalhes">Detalhes</a>
@@ -49,12 +50,12 @@
 
         <section class="section section--intro" id="convite" aria-labelledby="invite-title">
             <div class="container intro reveal">
-                <p class="section__eyebrow">QUERIDOS PADRINHOS</p>
-                <h2 class="intro__title" id="invite-title">Antes do “sim”,<br>queremos celebrar com <em>vocês.</em></h2>
+                <p class="section__eyebrow">A SURPRESA</p>
+                <h2 class="intro__title" id="invite-title" tabindex="-1">Aceitam ser nossos<br><em>padrinhos?</em></h2>
                 <div class="prose prose--center">
-                    <p>Vocês foram escolhidos porque fazem parte da nossa história e ocupam um lugar muito especial em
-                        nossas vidas.</p>
-                    <p>Preparamos um jantar para estarmos juntos, compartilharmos boas histórias e brindarmos tudo o que
+                    <p>Vocês fazem parte da nossa história e ocupam um lugar muito especial em nossas vidas. Por isso,
+                        queremos ter vocês ao nosso lado em um dos capítulos mais importantes dela.</p>
+                    <p>Preparamos um jantar para celebrar esse pedido, compartilhar boas histórias e brindar tudo o que
                         está por vir.</p>
                 </div>
                 <p class="intro__signature">Com carinho, Isabelle &amp; Guilherme</p>
@@ -129,7 +130,7 @@
                     <article class="dress-card">
                         <span class="dress-card__number" aria-hidden="true">01</span>
                         <p class="dress-card__label">Dress code</p>
-                        <h3 class="dress-card__title">Madrinhas</h3>
+                        <h3 class="dress-card__title">Mulheres</h3>
                         <p class="dress-card__text">Vestido midi ou longo. Escolham cores e modelos que façam vocês se
                             sentirem lindas e confortáveis.</p>
                         <p class="dress-card__mood">Elegante · leve · especial</p>
@@ -137,7 +138,7 @@
                     <article class="dress-card">
                         <span class="dress-card__number" aria-hidden="true">02</span>
                         <p class="dress-card__label">Dress code</p>
-                        <h3 class="dress-card__title">Padrinhos</h3>
+                        <h3 class="dress-card__title">Homens</h3>
                         <p class="dress-card__text">Camisa, calça de alfaiataria e blazer. A gravata é opcional para
                             manter o clima elegante e descontraído.</p>
                         <p class="dress-card__mood">Clássico · leve · confortável</p>
@@ -169,7 +170,7 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" id="invitation-footer" hidden>
         <div class="container footer__content reveal">
             <p class="footer__overline">ATÉ LÁ</p>
             <p class="footer__monogram">I <span>&amp;</span> G</p>
