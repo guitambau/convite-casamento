@@ -180,9 +180,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .button { display: inline-flex; width: 100%; min-height: 3.5rem; align-items: center; justify-content: center; gap: .8rem; margin-top: 2rem; border: 1px solid var(--forest); padding: .95rem 1.35rem; color: var(--white); background: var(--forest); font-size: .7rem; font-weight: 600; letter-spacing: .15em; text-decoration: none; text-transform: uppercase; transition: background var(--transition), color var(--transition), transform var(--transition); }
 .button[aria-disabled='true'], .text-link[aria-disabled='true'] { cursor: not-allowed; opacity: .55; }
-.note-card { display: grid; gap: 1.5rem; margin-top: 1rem; padding: 2.5rem 1.25rem; }
+.note-card { margin-top: 1rem; padding: 2.5rem 1.25rem; }
+.note-card__heading { display: grid; gap: 1.5rem; }
 .note-card__icon { display: grid; width: 4.5rem; height: 4.5rem; place-items: center; border: 1px solid var(--gold-light); border-radius: 50%; color: var(--gold); font-size: 1.4rem; }
 .note-card__text { max-width: 38rem; margin: 1rem 0 0; }
+.dress-grid { display: grid; gap: 1px; margin-top: 2.5rem; border: 1px solid var(--line); background: var(--line); }
+.dress-card { position: relative; min-width: 0; padding: 2rem 1.25rem; background: rgba(250,247,240,.92); }
+.dress-card__number { position: absolute; top: 1.4rem; right: 1.25rem; color: var(--gold); font-family: var(--font-heading); font-size: 1.1rem; font-style: italic; }
+.dress-card__label { margin: 0 0 .7rem; color: var(--sage); font-size: .62rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+.dress-card__title { margin: 0; color: var(--forest); font-family: var(--font-heading); font-size: 2rem; font-weight: 500; line-height: 1; }
+.dress-card__text { margin: 1rem 0 0; color: var(--forest-light); font-size: .9rem; }
+.dress-card__mood { margin: 1.5rem 0 0; border-top: 1px solid var(--line); padding-top: 1rem; color: var(--gold); font-family: var(--font-heading); font-size: 1rem; font-style: italic; }
 
 .rsvp-card { position: relative; margin-top: 1rem; padding: 4rem 1.25rem; overflow: hidden; text-align: center; color: var(--white); background: radial-gradient(circle at top right,rgba(180,147,97,.19),transparent 32%), var(--forest); }
 .rsvp-card::before, .rsvp-card::after { content: ''; position: absolute; width: 12rem; height: 12rem; border: 1px solid rgba(215,193,159,.16); border-radius: 50%; }
@@ -230,7 +238,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
     .detail:last-child { border-right: 0; padding-right: 0; }
     .detail__number { top: 2rem; right: 1.5rem; }
     .button { width: auto; min-width: 15rem; }
-    .note-card { grid-template-columns: auto 1fr; align-items: center; gap: 2.5rem; padding: 3.5rem 4rem; }
+    .note-card { padding: 3.5rem 4rem 4rem; }
+    .note-card__heading { grid-template-columns: auto 1fr; align-items: center; gap: 2.5rem; }
+    .dress-grid { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 3rem; }
+    .dress-card { padding: 2.5rem; }
+    .dress-card__number { top: 2rem; right: 2rem; }
     .rsvp-card { padding: 6rem 3rem; }
     .calendar-card { padding: 4rem; }
 }
