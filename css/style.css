@@ -316,6 +316,18 @@ a {
     color: var(--color-muted);
 }
 
+.countdown__complete {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    line-height: 1;
+    color: var(--color-primary);
+}
+
+.is-hidden {
+    display: none !important;
+}
+
 .button {
     display: inline-flex;
     justify-content: center;

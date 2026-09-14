@@ -76,6 +76,8 @@ function updateCountdown() {
     const countdownHours = document.getElementById('countdown-hours');
     const countdownMinutes = document.getElementById('countdown-minutes');
     const countdownSeconds = document.getElementById('countdown-seconds');
+    const countdownLabels = document.getElementById('countdown-labels');
+    const countdownComplete = document.getElementById('countdown-complete');
     const countdownMessage = document.getElementById('countdown-message');
 
     if (
@@ -84,6 +86,8 @@ function updateCountdown() {
         !countdownHours ||
         !countdownMinutes ||
         !countdownSeconds ||
+        !countdownLabels ||
+        !countdownComplete ||
         !countdownMessage ||
         Number.isNaN(targetDate.getTime())
     ) {
@@ -97,8 +101,9 @@ function updateCountdown() {
         const difference = targetDate.getTime() - now.getTime();
 
         if (difference <= 0) {
-            countdownDisplay.textContent = 'É hoje';
-            countdownDisplay.classList.add('countdown__numbers--complete');
+            countdownDisplay.classList.add('is-hidden');
+            countdownLabels.classList.add('is-hidden');
+            countdownComplete.classList.remove('is-hidden');
             countdownMessage.textContent = 'O grande dia chegou. Estamos prontos para celebrar!';
             window.clearInterval(intervalId);
             return;
@@ -110,8 +115,10 @@ function updateCountdown() {
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
 
-        countdownDisplay.classList.remove('countdown__numbers--complete');
-        countdownDays.textContent = formatCountdownPart(days, 2);
+        countdownDisplay.classList.remove('is-hidden');
+        countdownLabels.classList.remove('is-hidden');
+        countdownComplete.classList.add('is-hidden');
+        countdownDays.textContent = formatCountdownPart(days);
         countdownHours.textContent = formatCountdownPart(hours);
         countdownMinutes.textContent = formatCountdownPart(minutes);
         countdownSeconds.textContent = formatCountdownPart(seconds);
