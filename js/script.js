@@ -9,8 +9,8 @@ const dinnerConfig = {
     mapsUrl: 'https://maps.app.goo.gl/z8nCoDZRz23R7yE66',
     rsvpUrl: '',
     calendar: {
-        filename: 'jantar-padrinhos-isabelle-guilherme.ics',
-        title: 'Jantar dos Padrinhos — Isabelle & Guilherme',
+        filename: 'jantar-isabelle-guilherme.ics',
+        title: 'Jantar — Isabelle & Guilherme',
         description: 'Uma noite especial para brindar com Isabelle e Guilherme.'
     }
 };
