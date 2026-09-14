@@ -33,6 +33,8 @@ function setConfiguredLinks() {
         element.href = isPlaceholder ? '#' : url;
         element.setAttribute('aria-disabled', String(isPlaceholder));
         element.title = isPlaceholder ? 'Atualize o link correspondente em js/script.js' : '';
+        element.target = isPlaceholder ? '_self' : '_blank';
+        element.rel = isPlaceholder ? '' : 'noreferrer noopener';
 
         if (isPlaceholder) {
             element.addEventListener('click', (event) => event.preventDefault());
@@ -94,7 +96,7 @@ function updateCountdown() {
         return;
     }
 
-    let intervalId;
+    let intervalId = null;
 
     const update = () => {
         const now = new Date();
@@ -105,7 +107,7 @@ function updateCountdown() {
             countdownLabels.classList.add('is-hidden');
             countdownComplete.classList.remove('is-hidden');
             countdownMessage.textContent = 'O grande dia chegou. Estamos prontos para celebrar!';
-            if (intervalId) {
+            if (intervalId !== null) {
                 window.clearInterval(intervalId);
             }
             return true;
@@ -144,6 +146,31 @@ function toUtcIcsDate(dateString) {
         .replace(/\.\d{3}/, '');
 }
 
+function escapeIcsText(value) {
+    return String(value)
+        .replace(/\\/g, '\\\\')
+        .replace(/\r?\n/g, '\\n')
+        .replace(/,/g, '\\,')
+        .replace(/;/g, '\\;');
+}
+
+function foldIcsLine(line) {
+    const maxLength = 75;
+
+    if (line.length <= maxLength) {
+        return line;
+    }
+
+    const parts = [];
+
+    for (let index = 0; index < line.length; index += maxLength) {
+        const chunk = line.slice(index, index + maxLength);
+        parts.push(index === 0 ? chunk : ` ${chunk}`);
+    }
+
+    return parts.join('\r\n');
+}
+
 function buildCalendarFile() {
     const start = toUtcIcsDate(weddingConfig.date);
     const end = toUtcIcsDate(weddingConfig.endDate || weddingConfig.date);
@@ -158,14 +185,14 @@ function buildCalendarFile() {
         `DTSTAMP:${timestamp}`,
         `DTSTART:${start}`,
         `DTEND:${end}`,
-        `SUMMARY:${weddingConfig.calendar.title}`,
-        `DESCRIPTION:${weddingConfig.calendar.description}`,
-        `LOCATION:${weddingConfig.calendar.location}`,
+        `SUMMARY:${escapeIcsText(weddingConfig.calendar.title)}`,
+        `DESCRIPTION:${escapeIcsText(weddingConfig.calendar.description)}`,
+        `LOCATION:${escapeIcsText(weddingConfig.calendar.location)}`,
         'END:VEVENT',
         'END:VCALENDAR'
     ];
 
-    return lines.join('\r\n');
+    return lines.map(foldIcsLine).join('\r\n');
 }
 
 function setupCalendarLink() {
